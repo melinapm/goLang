@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"os"
 )
@@ -11,7 +12,7 @@ type Result struct {
 	Value  string
 }
 
-func generateStruct(s []rune) *Result {
+func generateStruct(s []rune) (*Result, error) {
 	r := Result{
 		Type:   "",
 		Value:  "",
@@ -19,13 +20,20 @@ func generateStruct(s []rune) *Result {
 	}
 
 	r.Type = string(s[0]) + string(s[1])
+	if r.Type != "TX" && r.Type != "NN" {
+		return &r, errors.New("No es un tipo valido")
+	}
 	r.Lenght = int(s[2]-'0') + int(s[3]-'0')
+
+	if r.Lenght != len(s)-4 {
+		return &r, errors.New("El tamaño es incorrecto")
+	}
 
 	for i := 4; i < len(s); i++ {
 		r.Value = r.Value + string(s[i])
 	}
 
-	return &r
+	return &r, nil
 }
 
 func main() {
