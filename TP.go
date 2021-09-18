@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"strconv"
 )
 
 type Result struct {
@@ -23,7 +24,12 @@ func generateStruct(s []rune) (*Result, error) {
 	if r.Type != "TX" && r.Type != "NN" {
 		return &r, errors.New("No es un tipo valido")
 	}
-	r.Lenght = int(s[2]-'0') + int(s[3]-'0')
+
+	if int(s[3]-'0') == 0 {
+		r.Lenght = int(s[2]-'0') + 9
+	} else {
+		r.Lenght = int(s[2]-'0') + int(s[3]-'0')
+	}
 
 	if r.Lenght != len(s)-4 {
 		return &r, errors.New("El tamaño es incorrecto")
@@ -31,6 +37,16 @@ func generateStruct(s []rune) (*Result, error) {
 
 	for i := 4; i < len(s); i++ {
 		r.Value = r.Value + string(s[i])
+	}
+
+	if r.Type == "TX" {
+		if _, err := strconv.Atoi(r.Value); err == nil {
+			return &r, errors.New("No es un texto")
+		}
+	} else if r.Type == "NN" {
+		if _, err := strconv.Atoi(r.Value); err != nil {
+			return &r, errors.New("No es un numero")
+		}
 	}
 
 	return &r, nil
