@@ -24,7 +24,7 @@ func generateStruct(str string) (*Result, error) {
 
 	r.Type = string(s[0]) + string(s[1])
 	if r.Type != "TX" && r.Type != "NN" {
-		return &r, errors.New("No es un tipo valido")
+		return &r, errors.New("Is not a valid type")
 	}
 
 	if int(s[3]-'0') == 0 {
@@ -34,7 +34,7 @@ func generateStruct(str string) (*Result, error) {
 	}
 
 	if r.Lenght != len(s)-4 {
-		return &r, errors.New("El tamaño es incorrecto")
+		return &r, errors.New("The lenght is invalid")
 	}
 
 	for i := 4; i < len(s); i++ {
@@ -43,11 +43,11 @@ func generateStruct(str string) (*Result, error) {
 
 	if r.Type == "TX" {
 		if _, err := strconv.Atoi(r.Value); err == nil {
-			return &r, errors.New("No es un texto")
+			return &r, errors.New("Is not a text")
 		}
 	} else if r.Type == "NN" {
 		if _, err := strconv.Atoi(r.Value); err != nil {
-			return &r, errors.New("No es un numero")
+			return &r, errors.New("Is not a number")
 		}
 	}
 
