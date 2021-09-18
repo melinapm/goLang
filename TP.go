@@ -13,12 +13,14 @@ type Result struct {
 	Value  string
 }
 
-func generateStruct(s []rune) (*Result, error) {
+func generateStruct(str string) (*Result, error) {
 	r := Result{
 		Type:   "",
 		Value:  "",
 		Lenght: 0,
 	}
+
+	s := []rune(str)
 
 	r.Type = string(s[0]) + string(s[1])
 	if r.Type != "TX" && r.Type != "NN" {
@@ -54,7 +56,5 @@ func generateStruct(s []rune) (*Result, error) {
 
 func main() {
 	str := os.Args[1]
-	chars := []rune(str)
-	fmt.Println(generateStruct(chars))
-
+	fmt.Println(generateStruct(str))
 }
