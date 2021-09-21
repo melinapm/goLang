@@ -1,4 +1,4 @@
-package goLang
+package tp
 
 import (
 	"errors"
@@ -11,7 +11,7 @@ type Result struct {
 	Value  string
 }
 
-func generateStruct(str string) (*Result, error) {
+func GenerateStruct(str string) (*Result, error) {
 	r := Result{
 		Type:   "",
 		Value:  "",
