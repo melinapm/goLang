@@ -1,9 +1,7 @@
-package main
+package goLang
 
 import (
 	"errors"
-	"fmt"
-	"os"
 	"strconv"
 )
 
@@ -52,9 +50,4 @@ func generateStruct(str string) (*Result, error) {
 	}
 
 	return &r, nil
-}
-
-func main() {
-	str := os.Args[1]
-	fmt.Println(generateStruct(str))
 }
