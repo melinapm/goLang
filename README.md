@@ -1,4 +1,6 @@
 # goLang
-Nuestra solucion a este ejercicio fue la siguiente:
-    Una funcion recibe como parametro un string y inicialmente crea una estructura del tipo Result con todos sus atributos vacios o 0,
-    luego al string que fue recibido como parametro lo "parseamos" utilizando la funcion rune (la cual fue la unica que encontramos para parsear una cadena de caracteres) y luego, con esos caracteres ya parseados, rellenamos la estrutuca Result con cada caracter o caracteres en su debido campo, solamente si estos cumplen su respectiva condiciones para ser una cadena valida , y por ultimo retornamos la estructura y el error
+GRUPO: Melina Perez Mounet, Grela Juan
+Nuestra solución a este ejercicio fue la siguiente:
+    La funcion principal GenerateStruct que recibe como parámetro un string y crea una estructura del tipo Result con todos sus atributos vacíos o 0.
+    Al string recibido como parámetro se lo "parsea" utilizando un array de tipo rune (de esta forma se puede utilizar el string como un array de chars). 
+	Se le asigna a la estructura Result el carácter o los caracteres correspondientes según la posición del array y se valida que cumplan  su respectiva condición (que sea de tipo texto, numero, longitud, etc). En caso que no se cumpla alguna de estas condiciones se torna un error, caso contrario se retorna la estructura result y un nil.
