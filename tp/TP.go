@@ -2,7 +2,6 @@ package tp
 
 import (
 	"errors"
-	"fmt"
 	"strconv"
 )
 
@@ -13,7 +12,6 @@ type Result struct {
 }
 
 func GenerateStruct(str string) (Result, error) {
-	fmt.Println("llego?")
 	r := Result{
 		Type:   "",
 		Value:  "",
